@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ profile.name|default:"Portfolio" }}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">PANALIGAN</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <i class="fa fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- ══ HOME ════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Available for work
+        </div>
+        <h1 class="hero-name">{{ profile.name|default:"Your Name" }}</h1>
+        <p class="hero-role">{{ profile.tagline|default:"Your Role Here" }}</p>
+       
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        {% if profile.photo %}
+          <img src="{{ profile.photo.url }}" alt="{{ profile.name }}" class="hero-photo" />
+        {% else %}
+          <div class="hero-photo-empty"><i class="fa fa-user"></i></div>
+        {% endif %}
+        <div class="hero-photo-frame"></div>
+      </div>
+
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-bar"></div>
+      <div class="scroll-bar" style="animation-delay:0.3s"></div>
+      <div class="scroll-bar" style="animation-delay:0.6s"></div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ════════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">01</div>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-block">
+          <h3 class="about-sub">Background</h3>
+          <p class="about-body">{{ profile.background|default:"Add your background in the admin panel." }}</p>
+        </div>
+        <div class="about-block">
+          <h3 class="about-sub">Career Goals</h3>
+          <p class="about-body">{{ profile.career_goals|default:"Add your career goals in the admin panel." }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ═══════════════════════════════════════════ -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">02</div>
+        <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+      </div>
+      <div class="skills-grid">
+        {% for skill in skills %}
+        <div class="skill-card">
+          <div class="skill-icon-wrap">
+            <i class="{{ skill.icon|default:'fa fa-code' }}"></i>
+          </div>
+          <span class="skill-name">{{ skill.name }}</span>
+          <div class="skill-track">
+            <div class="skill-fill" data-level="{{ skill.level }}"></div>
+          </div>
+          <span class="skill-pct">{{ skill.level }}%</span>
+        </div>
+        {% empty %}
+        <p class="empty-note">No skills added yet. Add them via the admin panel.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ══════════════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">03</div>
+        <h2 class="section-title">Selected <span class="accent">Projects</span></h2>
+      </div>
+      <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">Project {{ forloop.counter|stringformat:"02d" }}</span>
+          </div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-tools">
+            {% for tool in project.tools_used.split %}
+            <span class="tag">{{ tool }}</span>
+            {% endfor %}
+          </div>
+          {% if project.github_link %}
+          <a href="{{ project.github_link }}" target="_blank" class="project-link">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+          {% endif %}
+        </div>
+        {% empty %}
+        <p class="empty-note">No projects added yet. Add them via the admin panel.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EDUCATION ═════════════════════════════════════════ -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">04</div>
+        <h2 class="section-title">My <span class="accent">Education</span></h2>
+      </div>
+      <div class="edu-list">
+        {% for edu in education %}
+        <div class="edu-card">
+          <div class="edu-dot"></div>
+          <div class="edu-year">{{ edu.year_attended }}</div>
+          <div class="edu-info">
+            <h3 class="edu-school">{{ edu.school }}</h3>
+            <p class="edu-degree">{{ edu.degree }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <p class="empty-note">No education entries yet. Add them via the admin panel.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ═══════════════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">05</div>
+        <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-info">
+          {% if contact.email %}
+          <a href="mailto:{{ contact.email }}" class="contact-item">
+            <span class="c-icon"><i class="fa fa-envelope"></i></span>
+            <span>{{ contact.email }}</span>
+          </a>
+          {% endif %}
+          {% if contact.github %}
+          <a href="{{ contact.github }}" target="_blank" class="contact-item">
+            <span class="c-icon"><i class="fab fa-github"></i></span>
+            <span>GitHub</span>
+          </a>
+          {% endif %}
+          {% if contact.linkedin %}
+          <a href="{{ contact.linkedin }}" target="_blank" class="contact-item">
+            <span class="c-icon"><i class="fab fa-linkedin"></i></span>
+            <span>LinkedIn</span>
+          </a>
+          {% endif %}
+          {% if not contact %}
+          <p class="empty-note">Add your contact info via the admin panel.</p>
+          {% endif %}
+        </div>
+        <form class="contact-form" method="post" action="#contact">
+          {% csrf_token %}
+          <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="field">
+            <label>Message</label>
+            <textarea name="message" rows="5" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 {{ profile.name|default:"Portfolio" }} — Built with Django</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
