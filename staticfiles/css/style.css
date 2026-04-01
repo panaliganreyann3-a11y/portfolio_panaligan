@@ -1,17 +1,3 @@
-/* ═══════════════════════════════════════════════
-   PORTFOLIO — style.css  (Elegant Teal Dark Theme)
-   Palette (derived from Elegant_Blue reference):
-     #091820  deepest bg
-     #0E2229  dark bg
-     #142D37  surface
-     #1E3D4A  borders
-     #4A6572  muted
-     #8BA5AF  dim text
-     #C8D8DC  body text
-     #EBF2F4  near-white
-     #4CC9C9  teal accent
-   ═══════════════════════════════════════════════ */
-
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
 :root {
