@@ -1,18 +1,10 @@
 # Personal Portfolio Website — Django
 
-**ITS 305 Midterm Project | Section A**
-
----
 
 ## What This Project Is About
 
-This is a **personal portfolio website** built using the Django web framework. It displays your name, background, skills, projects, education, and contact information in a clean, professional layout.
+This is a **personal portfolio website** built using the Django web framework. 
 
-All content is managed through the **Django Admin panel** — no code editing needed after setup. Just log in to `/admin`, fill in your details, and the website updates automatically.
-
-The color scheme follows a dark navy and teal palette (`#191E29`, `#132D46`, `#01C38D`) for a modern, professional look.
-
----
 
 ## Project Structure
 
@@ -23,7 +15,7 @@ portfolio/
 │   │   ├── css/style.css         # All styles
 │   │   └── js/script.js          # All JavaScript
 │   ├── templates/
-│   │   └── home.html             # Main template (all sections)
+│   │   └── home.html             # Main template
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
@@ -134,6 +126,6 @@ Live URL format: `https://firstname_lastname.pythonanywhere.com`
 
 ## Author
 
-**[Your Full Name]**  
-ITS 305 — Section A  
+REY ANN C. PANALIGAN  
+BSINT Section A  
 `https://firstname_lastname.pythonanywhere.com`
